@@ -1,0 +1,30 @@
+{%extends 'base.html'%} 
+
+{%block content%}
+
+<div class="container">
+  <div class="display-4 my-2 text-center">Breast Cancer Prediction</div>
+  <hr />
+  {% if result %}
+  <div class="h1 my-2 text-center">
+    You {{ result }} breast cancer.
+  </div>
+  {% endif %}
+
+  <!-- 
+      19:46:19 09 Oct, 2019 by Arjun Adhikari
+      Form Here 
+      -->
+  <div class="col-md-4">
+    <form class="" method="POST" action="{% url 'breast' %}">
+      {% csrf_token %}
+      {{form}}
+      <div class="mt-4">
+        <button type="submit" class="btn-lg btn-block btn btn-outline-danger mb-5">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{%endblock%}
