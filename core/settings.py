@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+
+    'predictor',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,7 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 """ 
-00:20:00 10 Oct, 2019 by Arjun Adhikari
-Helper method for Heroku Deployment 
+00:20:00 10 Oct, 2023 by Irvene Kwambana 
 """
 django_heroku.settings(locals())

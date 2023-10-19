@@ -1,6 +1,5 @@
 from django import forms
 
-
 class BreastCancerForm(forms.Form):
 
     radius = forms.FloatField(label='Mean Radius', min_value=0, max_value=100, widget=forms.NumberInput(attrs={'class': 'form-control'}))

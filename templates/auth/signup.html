@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">	
+	<title>{% block title %}
+	  Login Form
+	{% endblock  %}</title>
+</head>
+			<!-- Default form login -->
+			&nbsp;
+			<div class="container">
+				<div class="col-12">
+					<div class="d-flex justify-content-center">
+						<form class="text-center border border-light p-5" method="POST">
+			
+							<p class="h4 mb-4">Log  in</p>
+							{% csrf_token %}
+							{% for field in form  %}
+							<div class="form-row">
+								<div class="col">
+									{{ field.label_tag }}
+									<div class=" mb-4">	
+										{{ field }}
+									</div>
+								</div>
+							</div>
+								
+															
+							{% endfor %}
+								
+							<!-- Email -->
+							
+							
+			
+							<!-- Sign in button -->
+							<button class="btn btn-info btn-block my-4" type="submit">Sign Up</button>
+			
+							<!-- Register -->
+							<p>Have an Account
+								<a href="{% url 'logIn' %}">Login</a>
+							</p>
+			
+							
+			
+						</form>
+						<!-- Default form login -->
+					</div>
+				</div>
+			</div>
+			&nbsp;
+	
+			  
+
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"></script>
+</body>
+</html>
