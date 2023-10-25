@@ -1,72 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- Bootstrap core CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-	<!-- Material Design Bootstrap -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">	
-	<title>{% block title %}
-	  Login Form
-	{% endblock  %}</title>
-</head>
-			<!-- Default form login -->
-			&nbsp;
-			<br>
-			<br>
-			<div class="container">
-				<div class="col-12">
-					<div class="d-flex justify-content-center">
-						<form class="text-center border border-light p-5" method="POST">
-			
-							<p class="h4 mb-4">Log  in</p>
-							{% csrf_token %}
-							
-							{% for field in form  %}
-								<!-- Email -->
-								{{ field.label_tag }}
-								<div class=" mb-4">	
-									{{ field }}
-								</div>
-
-								
-															
-							{% endfor %}
-								
-							<!-- Email -->
-							
-							
-			
-							<!-- Sign in button -->
-							<button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-			
-							<!-- Register -->
-							<p>Not a member?
-								<a href="{% url 'signUp' %}">Register</a>
-							</p>
-			
-							
-			
-						</form>
-						<!-- Default form login -->
-					</div>
-				</div>
-			</div>
-	
-			  
-
-
-	<!-- JQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"></script>
-</body>
-</html>
+{% extends 'base.html' %} {% block content %}
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-centered">
+        <h1 class="mt-5 mb-3">Login</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 mt-3">
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ form.username.label_tag }}
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              maxlength="150"
+              id="id_username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            {{ form.password.label_tag }}
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="id_password"
+              required
+            />
+          </div>
+          {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+          <p style="font-size: 13px;">
+            {{ error|escape }}
+          </p>
+          {% endfor %} {% endif %}
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

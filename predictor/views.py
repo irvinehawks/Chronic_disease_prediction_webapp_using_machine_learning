@@ -1,11 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
-from predictor.forms import BreastCancerForm, DiabetesForm, HeartDiseaseForm
+from predictor.forms import BreastCancerForm, DiabetesForm, HeartDiseaseForm, SignUpForm
 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def landing(request):
+    return render(request, 'landing.html')
+
+@login_required
+def home(request):
+    return render(request, 'home.html', {})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username = username, password = password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'auth/register.html', {'form': form})
+
+
+# Now we dive into signup() function. It gets user data from HTTP POST request which is handled by SignUpForm, save user to database.
+
+# Then we use authenticate() function and login() function from django.contrib.auth to log the user in.
+
+# If the process is successful, redirect to homepage, otherwise, return to signup.html template.
 
 def heart(request):
     """ 
@@ -199,24 +232,6 @@ def breast(request):
                       'breast': True,
                       'form': BreastCancerForm(),
                   })
-
-"""
-Sign-up Form
-
-"""
-
-
-
-
-def home(request):
-
-    return render(request,
-                  'home.html')
-
-def landing(request):
-
-    return render(request,
-                  'landing.html')
 
 
 """ 
